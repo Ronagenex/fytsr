@@ -1,7 +1,6 @@
 googletrans==3.1.0a0
 gTTS==2.3.1
 nltk==3.8.1
-openai_whisper==20230314
 pytube==15.0.0
 st_annotated_text==4.0.0
 streamlit==1.20.0
