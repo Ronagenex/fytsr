@@ -6,7 +6,7 @@ from sumy.nlp.tokenizers import Tokenizer
 import unicodedata
 import warnings 
 import logging
-
+nltk.download('punkt')
 warnings.filterwarnings("ignore")
 logging.getLogger("transformers").setLevel(logging.ERROR)
 
