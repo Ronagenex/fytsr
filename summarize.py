@@ -1,3 +1,4 @@
+nltk.download('punkt')
 from transformers import pipeline
 from nltk.tokenize import sent_tokenize
 from sumy.summarizers.text_rank import TextRankSummarizer
@@ -6,7 +7,7 @@ from sumy.nlp.tokenizers import Tokenizer
 import unicodedata
 import warnings 
 import logging
-nltk.download('punkt')
+
 warnings.filterwarnings("ignore")
 logging.getLogger("transformers").setLevel(logging.ERROR)
 
