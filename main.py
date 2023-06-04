@@ -36,7 +36,7 @@ def audio_to_text(link="",audio_file=True):
         transcript=clean_summary(speech_to_text("",True))
         return transcript
     except Exception as e:
-        return f"An error transcribing audio file."
+        return f"An error transcribing audio file.{e}"
     
 def text_to_speech(text,language):
     try :
