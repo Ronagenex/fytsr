@@ -27,6 +27,13 @@ if 'to_run' not in st.session_state:
 
     
 def main():
+    st.set_theme(
+    primaryColor="#f90000",
+    backgroundColor="#202123",
+    secondaryBackgroundColor="#000000",
+    textColor="#f7f6f6",
+    font="monospace"
+)
     st.markdown(
         """
         <style>
