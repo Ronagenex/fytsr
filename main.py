@@ -13,7 +13,7 @@ def get_transcript(video_link):
         transcript=clean_summary(transcript)        
         return transcript
     except Exception as e:
-        return f"An error during transcription.{e}"
+        return f"An error during transcription."
 
 def translate_summary(text,lang_choice):
     try :
@@ -36,7 +36,7 @@ def audio_to_text(link="",audio_file=True):
         transcript=clean_summary(speech_to_text("",True))
         return transcript
     except Exception as e:
-        return f"An error transcribing audio file.{e}"
+        return f"An error transcribing audio file."
     
 def text_to_speech(text,language):
     try :
