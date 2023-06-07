@@ -60,11 +60,11 @@ def get_abstractive_summary(text, model_choice):
     
     # Determine the length parameter based on the length of the text
     if len(text) < 2000:
-        length = 85
+        length = 80
     elif len(text) > 20000:
-        length = 65
+        length = 60
     else:
-        length = 75
+        length = 70
     
     # Generate the summary in chunks until the full text is processed
     while start < len(text):
