@@ -91,7 +91,7 @@ def speech_to_text(video_link, has_audio_file=False):
         stream = yt.streams.get_by_itag(139)
         stream.download('', "audio_file0.mp3")
             
-    model=whisper.load_model("large")
+    model=whisper.load_model("base")
     audio = whisper.load_audio("audio_file0.mp3")
     audio = whisper.pad_or_trim(audio)
     mel = whisper.log_mel_spectrogram(audio).to(model.device)
