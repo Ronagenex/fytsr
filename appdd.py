@@ -189,7 +189,7 @@ def main():
                         if start_time and end_time :
                             with st.spinner("please wait while clip is being generated..."):
                                 download_video(video_link, start_time, end_time)
-                            st.download_button(label="Download clip",data=open(f"{st.session_state.title}.mp4",'rb'),file_name=f"Clip-{st.session_state.title}.mp4")
+                            st.download_button(label="Download clip",data=open(f"clipped-{st.session_state.title}.mp4",'rb'),file_name=f"Clip-{st.session_state.title}.mp4")
                         else:
                             st.error("Please fill in all the required fields.")    
    
