@@ -181,7 +181,7 @@ def main():
                         current_dir = os.path.dirname(os.path.realpath(__file__))
 
                         # Specify the output file path for the downloaded video
-                        output_file = os.path.join(current_dir, f"{st.session_state.title}.mp4")
+                        output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
 
                         command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
                         subprocess.run(command, shell=True)
