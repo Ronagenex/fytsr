@@ -10,7 +10,7 @@ sumy==0.11.0
 transformers==4.26.0
 whisper==1.1.10
 youtube_transcript_api==0.4.1
-
+youtube-dl
 yt-dlp==2023.03.04
 Pillow==9.5.0
 streamlit==1.20.0
