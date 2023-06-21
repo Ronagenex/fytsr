@@ -171,7 +171,7 @@ def main():
                         stream.download("",f"{st.session_state.title}.mp4")
                     with st.spinner("Please wait while file is being downloaded"):
                         download_video(video_link)
-                    st.download_button(label="Download video",data=open(f"{st.session_state.title}.mp4",'rb'),file_name=f"Down-{st.session_state.title}.mp4")
+                    st.download_button(label="Download video",data=open(f"{st.session_state.title}.mp4",'rb'),file_name=f"Full-{st.session_state.title}.mp4")
                     
                 elif choice =="Video clip":
                     start_time = st.text_input("Enter Start time (format: HH-MM-SS)")
