@@ -2,7 +2,7 @@ from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, No
 from googletrans import LANGUAGES
 import whisper
 from pytube import YouTube
-import warnings
+import warnings,subprocess,os
 
 # Suppress FP16 warnings
 warnings.filterwarnings("ignore", message="FP16 is not supported on CPU; using FP32 instead")
@@ -87,9 +87,13 @@ def speech_to_text(video_link, has_audio_file=False):
         except Exception as e:
             return f'An Error occurred with given link.'
 
-        yt.streams.filter(file_extension='mp3')
-        stream = yt.streams.get_by_itag(139)
-        stream.download('', "audio_file0.mp3")
+        # yt.streams.filter(file_extension='mp3')
+        # stream = yt.streams.get_by_itag(139)
+        # stream.download('', "audio_file0.mp3")
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        output_file = os.path.join(current_dir, "audio_file6.mp3")
+        command = f'yt-dlp -x --audio-format mp3 -o "{output_file}" {video_link}'
+        subprocess.run(command, shell=True)
             
     model=whisper.load_model("base")
     audio = whisper.load_audio("audio_file0.mp3")
@@ -109,4 +113,4 @@ def speech_to_text(video_link, has_audio_file=False):
    
 # print(speech_to_text("https://www.youtube.com/watch?v=lAfcr-SmRX4"))
 # print(speech_to_text("https://www.youtube.com/watch?v=MrF0mWZQO6o"))
-# print(speech_to_text("https://www.youtube.com/watch?v=zh_IcW_r3ak"))
+# print(speech_to_text("https://www.youtube.com/watch?v=Gj9DCR9rRM4"))
