@@ -91,7 +91,7 @@ def speech_to_text(video_link, has_audio_file=False):
         # stream = yt.streams.get_by_itag(139)
         # stream.download('', "audio_file0.mp3")
         current_dir = os.path.dirname(os.path.realpath(__file__))
-        output_file = os.path.join(current_dir, "audio_file6.mp3")
+        output_file = os.path.join(current_dir, "audio_file0.mp3")
         command = f'yt-dlp -x --audio-format mp3 -o "{output_file}" {video_link}'
         subprocess.run(command, shell=True)
             
