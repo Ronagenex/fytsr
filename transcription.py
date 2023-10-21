@@ -87,9 +87,9 @@ def speech_to_text(video_link, has_audio_file=False):
         except Exception as e:
             return f'An Error occurred with given link.'
 
-        # yt.streams.filter(file_extension='mp3')
-        # stream = yt.streams.get_by_itag(139)
-        # stream.download('', "audio_file0.mp3")
+        yt.streams.filter(file_extension='mp3')
+        stream = yt.streams.get_by_itag(139)
+        stream.download('', "audio_file0.mp3")
         current_dir = os.path.dirname(os.path.realpath(__file__))
         output_file = os.path.join(current_dir, "audio_file0.mp3")
         command = f'yt-dlp -x --audio-format mp3 -o "{output_file}" {video_link}'
