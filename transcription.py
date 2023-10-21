@@ -102,8 +102,8 @@ def speech_to_text(video_link, has_audio_file=False):
     _, probs = model.detect_language(mel)
     langs = {max(probs, key=probs.get)}
 
-    # if 'en' not in langs:
-    #     return "Only english language is supported for transcription."
+    if 'en' not in langs:
+        return "Only english language is supported for transcription."
 
     result = model.transcribe("audio_file0.mp3")
     manual_subtitles = True
