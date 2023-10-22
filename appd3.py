@@ -188,12 +188,13 @@ def main():
                     st.write(f"<p>Time format: {s}</p>", unsafe_allow_html=True)
                     start_time = st.text_input("Enter Start time...")
                     end_time = st.text_input("Enter end time...")
-                    def download_video(video_link, start_time, end_time):
-            # Get the current directory where the Streamlit app is located
-                        current_dir = os.path.dirname(os.path.realpath(__file__))
+                    current_dir = os.path.dirname(os.path.realpath(__file__))
 
                         # Specify the output file path for the downloaded video
-                        output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
+                    output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
+                    def download_video(video_link, start_time, end_time):
+            # Get the current directory where the Streamlit app is located
+                        
 
                         command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
                         subprocess.run(command, shell=True)
@@ -201,7 +202,7 @@ def main():
                         if start_time and end_time :
                             with st.spinner("please wait while clip is being generated..."):
                                     download_video(video_link, start_time, end_time)
-                                    subprocess.run("ls",shell=True)
+                                    
                             if os.path.exists(output_file):
                                 st.success("Video clip generated successfully!")
                                 st.download_button("Download clip", data=open(output_file, 'rb'),
