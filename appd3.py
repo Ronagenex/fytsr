@@ -197,7 +197,12 @@ def main():
                         st.session_state.title.replace(";","")
                         output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
 
-                        command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
+                        # command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
+                        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+
+# Build the yt-dlp command with custom start and end times and user agent
+                        command = f'yt-dlp -o "{output_file}" -f "best" --external-downloader ffmpeg --external-downloader-args "-ss {start_time} -to {end_time}" --user-agent "{user_agent}" "{video_link}"'
+
                         subprocess.run(command, shell=True)
                     if st.button("generate clip"):              
                         if start_time and end_time :
