@@ -200,7 +200,11 @@ def main():
                     if st.button("generate clip"):              
                         if start_time and end_time :
                             with st.spinner("please wait while clip is being generated..."):
-                                download_video(video_link, start_time, end_time)
+                                try:
+                                    download_video(video_link, start_time, end_time)
+                                    subprocess.run("ls",shell=True)
+                                except Exception as e:
+                                    st.write(e)
                             st.download_button(label="Download clip",data=open(f"clipped-{st.session_state.title}.mp4",'rb'),file_name=f"Clip-{st.session_state.title}.mp4")
                         else:
                             st.error("Please fill in all the required fields.")    
