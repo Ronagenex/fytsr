@@ -9,7 +9,6 @@ streamlit_player==0.1.5
 sumy==0.11.0
 transformers==4.26.0
 
-youtube_transcript_api==0.4.1
 youtube-dl
 yt-dlp
 Pillow==9.5.0
