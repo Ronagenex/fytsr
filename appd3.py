@@ -109,7 +109,7 @@ def main():
         common_text = set(summary1.split()) & set(summary2.split())
         return common_text
     st.markdown("<br>", unsafe_allow_html=True)
-    option = st.radio("Choose your input format:", ["Enter a Link", "Upload an Audio File","Download video"])
+    option = st.radio("Choose your input format:", ["Enter a Link", "Upload an Audio File"])
     error_dict=["An error during transcription.","An error during translation.","An error occured during fetching video data.","An error transcribing audio file.","An error occured during generating audible summary.","An error occured during summarization.","Video not found, enter a valid youtube video link.","An error occured during transcription.",'An Error occurred with given link.',"Only english language is supported for transcription."]
     st.markdown("<br>", unsafe_allow_html=True)
     if option == "Enter a Link":
