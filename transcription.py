@@ -92,8 +92,8 @@ def speech_to_text(video_link, has_audio_file=False):
         stream.download('', "audio_file0.mp3")
         current_dir = os.path.dirname(os.path.realpath(__file__))
         output_file = os.path.join(current_dir, "audio_file0.mp3")
-        command = f'yt-dlp -x --audio-format mp3 -o "{output_file}" {video_link}'
-        subprocess.run(command, shell=True)
+        # command = f'yt-dlp -x --audio-format mp3 -o "{output_file}" {video_link}'
+        # subprocess.run(command, shell=True)
             
     model=whisper.load_model("base")
     audio = whisper.load_audio("audio_file0.mp3")
