@@ -21,7 +21,7 @@ def translate_summary(text,lang_choice):
         return fetch_translated_text(text,lang_choice).capitalize()
         
     except Exception as e:
-       return f"An error during translation."
+       return f"An error during translation.{e}"
     
 def get_data(link):
     try :
