@@ -13,6 +13,7 @@ def get_transcript(video_link):
         transcript=clean_summary(transcript)        
         return transcript
     except Exception as e:
+        print(e)
         return f"An error during transcription."
 
 def translate_summary(text,lang_choice):
