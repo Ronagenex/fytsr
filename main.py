@@ -41,7 +41,8 @@ def audio_to_text(link="",audio_file=True):
     
 def text_to_speech(text,language):
     try :
-        tts=ttspeech(text,language)
+        translated_text=translate_summary(text,language
+        tts=ttspeech(translated_text,language)
     except Exception as e:
         return f"An error occured during generating audible summary."
 
