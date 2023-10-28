@@ -172,7 +172,7 @@ def main():
     #                         stream.download("",f"{st.session_state.title}.mp4")
     #                     except:
     #                         current_dir = os.path.dirname(os.path.realpath(__file__))
-                            output_file = os.path.join(current_dir, f"{st.session_state.title}.mp4")
+                            # output_file = os.path.join(current_dir, f"{st.session_state.title}.mp4")
                             # command = f'yt-dlp {video_link}'
             #                 command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" "{video_link}"'
             #                 subprocess.run(command, shell=True)
