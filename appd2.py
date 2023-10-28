@@ -109,7 +109,7 @@ def main():
         common_text = set(summary1.split()) & set(summary2.split())
         return common_text
     st.markdown("<br>", unsafe_allow_html=True)
-    option = st.radio("Choose your input format:", ["Enter a Link", "Upload an Audio File","Download video"])
+    option = st.radio("Choose your input format:", ["Enter a Link", "Upload an Audio File"])
     error_dict=["An error during transcription.","An error during translation.","An error occured during fetching video data.","An error transcribing audio file.","An error occured during generating audible summary.","An error occured during summarization.","Video not found, enter a valid youtube video link.","An error occured during transcription.",'An Error occurred with given link.',"Only english language is supported for transcription."]
     st.markdown("<br>", unsafe_allow_html=True)
     if option == "Enter a Link":
@@ -149,61 +149,61 @@ def main():
             st.session_state.transcript = transcript
             st.session_state.summary = ""
             st.session_state.expander_state = True
-    elif option == "Download video":
-        st.title("YouTube Video Downloader")
-        video_link,start_time,end_time="","",""
-        video_link = st.text_input("Enter YouTube video URL:")
-        if video_link:
-            try:
-                yt=YouTube(video_link)
-                st.session_state.title=yt.title
+    # elif option == "Download video":
+    #     st.title("YouTube Video Downloader")
+    #     video_link,start_time,end_time="","",""
+    #     video_link = st.text_input("Enter YouTube video URL:")
+    #     if video_link:
+    #         try:
+    #             yt=YouTube(video_link)
+    #             st.session_state.title=yt.title
                 
-            except:
-                st.warning("Please enter a valid link!")  
-                video_link=""
-            if st.session_state.title:
-                choice = st.radio("Choose operation:", ["Full video", "Video clip"])
-                if choice == "Full video":
+    #         except:
+    #             st.warning("Please enter a valid link!")  
+    #             video_link=""
+    #         if st.session_state.title:
+    #             choice = st.radio("Choose operation:", ["Full video", "Video clip"])
+    #             if choice == "Full video":
                     
-                    def download_video(video_link):
-                        yt=YouTube(video_link)
-                        try:
-                            stream = yt.streams.get_highest_resolution()
-                            stream.download("",f"{st.session_state.title}.mp4")
-                        except:
-                            current_dir = os.path.dirname(os.path.realpath(__file__))
+    #                 def download_video(video_link):
+    #                     yt=YouTube(video_link)
+    #                     try:
+    #                         stream = yt.streams.get_highest_resolution()
+    #                         stream.download("",f"{st.session_state.title}.mp4")
+    #                     except:
+    #                         current_dir = os.path.dirname(os.path.realpath(__file__))
                             output_file = os.path.join(current_dir, f"{st.session_state.title}.mp4")
                             # command = f'yt-dlp {video_link}'
-                            command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" "{video_link}"'
-                            subprocess.run(command, shell=True)
+            #                 command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" "{video_link}"'
+            #                 subprocess.run(command, shell=True)
 
 
                         
-                    with st.spinner("Please wait while file is being downloaded"):
-                        download_video(video_link)
-                    st.download_button(label="Download video",data=open(f"{st.session_state.title}.mp4",'rb'),file_name=f"Full-{st.session_state.title}.mp4")
+            #         with st.spinner("Please wait while file is being downloaded"):
+            #             download_video(video_link)
+            #         st.download_button(label="Download video",data=open(f"{st.session_state.title}.mp4",'rb'),file_name=f"Full-{st.session_state.title}.mp4")
                     
-                elif choice =="Video clip":
-                    s = "HH:MM:SS"
-                    st.write(f"<p>Time format: {s}</p>", unsafe_allow_html=True)
-                    start_time = st.text_input("Enter Start time...")
-                    end_time = st.text_input("Enter end time...")
-                    def download_video(video_link, start_time, end_time):
-            # Get the current directory where the Streamlit app is located
-                        current_dir = os.path.dirname(os.path.realpath(__file__))
+            #     elif choice =="Video clip":
+            #         s = "HH:MM:SS"
+            #         st.write(f"<p>Time format: {s}</p>", unsafe_allow_html=True)
+            #         start_time = st.text_input("Enter Start time...")
+            #         end_time = st.text_input("Enter end time...")
+            #         def download_video(video_link, start_time, end_time):
+            # # Get the current directory where the Streamlit app is located
+            #             current_dir = os.path.dirname(os.path.realpath(__file__))
 
-                        # Specify the output file path for the downloaded video
-                        output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
+            #             # Specify the output file path for the downloaded video
+            #             output_file = os.path.join(current_dir, f"clipped-{st.session_state.title}.mp4")
 
-                        command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
-                        subprocess.run(command, shell=True)
-                    if st.button("generate clip"):              
-                        if start_time and end_time :
-                            with st.spinner("please wait while clip is being generated..."):
-                                download_video(video_link, start_time, end_time)
-                            st.download_button(label="Download clip",data=open(f"clipped-{st.session_state.title}.mp4",'rb'),file_name=f"Clip-{st.session_state.title}.mp4")
-                        else:
-                            st.error("Please fill in all the required fields.")    
+            #             command = f'yt-dlp -o "{output_file}" -f "(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss {start_time} -to {end_time}" "{video_link}"'
+            #             subprocess.run(command, shell=True)
+            #         if st.button("generate clip"):              
+            #             if start_time and end_time :
+                        #     with st.spinner("please wait while clip is being generated..."):
+                        #         download_video(video_link, start_time, end_time)
+                        #     st.download_button(label="Download clip",data=open(f"clipped-{st.session_state.title}.mp4",'rb'),file_name=f"Clip-{st.session_state.title}.mp4")
+                        # else:
+                        #     st.error("Please fill in all the required fields.")    
    
 
     if st.session_state.transcript:
